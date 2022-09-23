@@ -23,9 +23,14 @@ export default function ConfessionTile(props) {
       console.log(response);
     }
 
+    const tileClicked = () => {
+      if(props.redirectOnClick === 'true' ) {
+        window.location.href = `/confession/${props.confession._id}`;
+      }
+    }
+
     return (
-      <div className="confession-tile tile-shadow">
-        <a href={`/confession/${props.confession._id}`}>Link</a>
+      <div className="confession-tile tile-shadow" onClick={tileClicked}>
         <div className="confession-tile__age-gender">
             <div>Age: {props.confession.age}</div>
             <div>Gender: {props.confession.sex}</div>
@@ -41,37 +46,20 @@ export default function ConfessionTile(props) {
             </div>
             <div>{props.confession.commentCount} comments</div>
         </div>
-        <div className="confession-tile__comment-section">
-          {
-            props.confession.comments &&
-              props.confession.comments.map(item =>
-              <Comment key={item._id} comment={item}/>
-            )
-          }
-          <form onSubmit={handleSubmit}>
-            <textarea name="newcomment" value={inputs.newcomment} onChange={handleChange} />
-            <input type="submit" />
-          </form>
-            {/* <div :key="comments._id" v-for="comments in props.confession.comments">
-                <div className="confession-tile__comment">
-                    <div className="confession-tile__comment-details">{comments.username} commented on {formatDate(comments.createdAt)}</div>
-                    <div className="confession-tile__comment-content">{comments.comment}</div>
-                </div>
-            </div> */}
-            {/* <form @submit="onSubmit">
-                <div className="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" className="form-control" id="username" name="username" v-model="username" required :disabled="usernameDisable">
-                    <button className="btn btn-primary" type="button" @click="usernameDisable=false">Change Username</button>
-                </div>
-                <div className="form-group">
-                    <textarea className="form-control" name="comment" placeholder="Type your comment here..." rows="2" v-model="comment" required></textarea>
-                </div>
-                <div className="">
-                <button className="btn btn-primary" type="submit">Comment</button>
-                </div>
-            </form> */}
-        </div>
+        {
+          props.showCommentBox==='true' && (<div className="confession-tile__comment-section">
+            <form onSubmit={handleSubmit}>
+              <textarea className="confession-tile__new-comment-textarea" name="newcomment" value={inputs.newcomment} onChange={handleChange} />
+              <button type="submit" className="button-styled">Submit Comment</button>
+            </form>
+            {
+              props.confession.comments &&
+                props.confession.comments.map(item =>
+                <Comment key={item._id} comment={item}/>
+              )
+            }
+          </div>)
+        }
         {/* <div v-if="enableShare">
             <button className="btn btn-primary" type="button" @click="shareConfession">Share</button>
         </div> */}

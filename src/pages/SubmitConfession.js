@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ConfessionService from '../services/ConfessionService';
 
-export default function Confess() {
+export default function SubmitConfession() {
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
@@ -26,7 +26,7 @@ export default function Confess() {
     }
 
     return (
-      <main style={{ padding: "1rem 0" }}>
+      <div className="submit-confession-page">
         <h2>Confess</h2>
         <form onSubmit={handleSubmit}>
             <label>Enter your age:
@@ -53,6 +53,6 @@ export default function Confess() {
             <textarea name="content" value={inputs.content} onChange={handleChange} />
             <input type="submit" />
         </form>
-      </main>
+      </div>
     );
 }

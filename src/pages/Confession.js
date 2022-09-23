@@ -20,9 +20,9 @@ export default function Confession() {
   }, [id]);
 
     return (
-      <div className="confession">
+      <div className="confession-page">
         {
-          confession._id ? <ConfessionTile confession={confession}/> : ''
+          confession._id ? <ConfessionTile confession={confession} showCommentBox="true"/> : ''
         }
       </div>
     );

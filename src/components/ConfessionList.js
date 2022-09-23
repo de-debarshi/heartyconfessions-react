@@ -3,10 +3,10 @@ import ConfessionTile from "./ConfessionTile";
 
 export default function ConfessionList(props) {
     return (
-      <div className="confession-list" style={{display: 'flex'}}>
+      <div className="confession-list">
         {
           props.confessionArray.map(item =>
-            <ConfessionTile key={item._id} confession={item}/>
+            <div className="grid-item"><ConfessionTile key={item._id} confession={item} showCommentBox="false" redirectOnClick="true"/></div>
           )
         }
       </div>

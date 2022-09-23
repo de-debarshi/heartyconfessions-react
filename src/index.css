@@ -1,13 +1,156 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Lucida Console", "Courier New", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  height: 100px;
+}
+
+.header-logo {
+  width: 300px;
+  margin: 10px 0 0 0;
+  cursor: pointer;
+}
+
+.tile-shadow {
+  -webkit-box-shadow: 0px 0px 20px 5px rgba(108,41,53,0.75);
+  -moz-box-shadow: 0px 0px 20px 5px rgba(108,41,53,0.75);
+  box-shadow: 0px 0px 20px 5px rgba(108,41,53,0.75);
+  transition: box-shadow .2s ease-out;
+}
+.tile-shadow:hover {
+  -webkit-box-shadow: 0px 0px 20px 10px rgba(108,41,53,0.75);
+  -moz-box-shadow: 0px 0px 20px 10px rgba(108,41,53,0.75);
+  box-shadow: 0px 0px 20px 10px rgba(108,41,53,0.75);
+}
+
+.confession-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.confession-list .grid-item {
+  width: 25%;
+  margin: 20px 0;
+}
+
+.confession-list .confession-tile {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .confession-list .grid-item {
+    width: 33.33%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .confession-list .grid-item {
+    width: 100%;
+  }
+}
+.confession-tile {
+    padding: 30px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-color: white;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.confession-tile__content {
+    min-height: 200px;
+}
+.confession-tile.--small {
+    cursor: pointer;
+}
+.confession-tile.--small .confession-tile__content {
+    max-height: 200px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+.confession-tile__comment ,.confession-tile__content {
+  background-color: #ffedf1 !important;
+  border-radius: 10px;
+  margin: 0 0 5px 0;
+  padding: 10px;
+}
+.confession-tile__like-icon{
+    color: red;
+    font-size: 16px;
+}
+.confession-tile__age-gender, .confession-tile__reaction{
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.confession-tile__comment-details {
+    font-size: 12px;
+    font-style: italic;
+}
+.confession-tile__new-comment-textarea {
+  width: 100%;
+}
+#share-confession-modal {
+    z-index: 99;    
+}
+#share-confession-modal .modal-content {
+    background-color: white;
+}
+
+/* CSS */
+.button-styled {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-color: #F76F72;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-styled:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.button-styled:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.submit-stories-btn {
+  margin-bottom: 30px;
+}
+
+.home-page__introduction-text {
+  font-size: 36px;
+  width: 50%;
+  margin: 0 auto;
 }
