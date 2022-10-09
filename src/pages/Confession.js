@@ -13,16 +13,14 @@ export default function Confession() {
     async function fetchSingleData() {
       const response = await ConfessionService.fetchSingleConfession(id);
       setConfession(response);
-      // console.log(response);
     }
     fetchSingleData();
-    console.log('hooked');
   }, [id]);
 
     return (
       <div className="confession-page">
         {
-          confession._id ? <ConfessionTile confession={confession} showCommentBox="true"/> : ''
+          confession._id ? <ConfessionTile confession={confession} showCommentBox="true"/> : 'This confession is not available right now.'
         }
       </div>
     );

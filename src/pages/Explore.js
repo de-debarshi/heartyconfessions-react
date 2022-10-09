@@ -1,36 +1,52 @@
 import { useState, useEffect } from 'react';
 import ConfessionService from '../services/ConfessionService';
 import ConfessionList from '../components/ConfessionList.js';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Explore() {
-  const [confessionObj, setconfessionObj] = useState({});
+  const [confessionList, setConfessionList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
+
+  const fetchData = async (pageNumber) => {
+    const response = await ConfessionService.fetchConfessions(pageNumber, 'Any');
+    setConfessionList(confessionList => [...confessionList, ...response.confessionList]);
+    if(currentPage === 1) {
+      setTotalPage(response.totalPage);
+    }
+  }
+
+  const paginate = () => {
+    let nextPage = currentPage+1;
+
+    if(nextPage <= totalPage) {
+      // fetchData(nextPage);
+      setCurrentPage(nextPage);
+    }
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await ConfessionService.fetchConfessions(1, 'Any');
-      setconfessionObj(response);
-      // console.log(response);
-    }
-    fetchData();
-
-    console.log('mounted');
-
-    /* async function fetchSingleData() {
-      const response = await ConfessionService.fetchSingleConfession('61d32a2bdb65bf303e1dbe78');
-      setconfessionList(response);
-      console.log(response);
-    }
-    fetchSingleData(); */
-
-  }, []);
+    fetchData(currentPage);
+  }, [currentPage]);
 
     return (
       <div className="explore-page" >
-        <div>
-          <a href="/submit" className="button-styled submit-stories-btn">Submit Your Stories</a>
+        <div className="introduction-text">
+          <p>Scroll down to explore some interesting stories!</p>
         </div>
-
-        {confessionObj.confessionList ? <ConfessionList confessionArray={confessionObj.confessionList} /> : ''}
+        <InfiniteScroll
+          dataLength={confessionList.length} //This is important field to render the next data
+          next={paginate}
+          hasMore={currentPage !== totalPage}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          {confessionList ? <ConfessionList confessionArray={confessionList} /> : ''}
+        </InfiniteScroll>
       </div>
     );
 }

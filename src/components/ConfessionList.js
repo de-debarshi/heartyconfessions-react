@@ -6,7 +6,7 @@ export default function ConfessionList(props) {
       <div className="confession-list">
         {
           props.confessionArray.map(item =>
-            <div className="grid-item"><ConfessionTile key={item._id} confession={item} showCommentBox="false" redirectOnClick="true"/></div>
+            <div className="grid-item" key={item._id}><ConfessionTile confession={item} showCommentBox="false" redirectOnClick="true" showReactButton="false" /></div>
           )
         }
       </div>

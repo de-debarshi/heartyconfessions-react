@@ -1,31 +1,52 @@
 import { useState } from 'react';
+import { Heart } from "phosphor-react";
 import ConfessionService from '../services/ConfessionService';
 import Comment from './Comment';
 
 export default function ConfessionTile(props) {
+    const propComments = props.confession.comments ? props.confession.comments : [];
     const [inputs, setInputs] = useState({});
+    const [like, setLike] = useState(false);
+    const [comments, setComments] = useState([...propComments]);
+    const [formError, setFormError] = useState({});
 
     const handleChange = (event) => {
       const name = event.target.name;
       const value = event.target.value;
-      setInputs(values => ({...values, [name]: value}))
+      setInputs(values => ({...values, [name]: value}));
+      setFormError(false);
     }
 
     const handleSubmit = async (event) => {
       event.preventDefault();
 
-      const newComment = {
-        _id: props.confession._id,
-        username: 'Guest',
-        comment: inputs.newcomment
+      if(inputs.newcomment) {
+        const newComment = {
+          _id: props.confession._id,
+          username: 'Guest',
+          comment: inputs.newcomment
+        }
+        let response = await ConfessionService.addComment(newComment);
+        setComments(comments => [...response.comments]);
+        props.confession.commentCount = response.commentCount;
+        setInputs(values => ({...values, newcomment: ''}));
+      } else {
+        setFormError(true);
       }
-      let response = await ConfessionService.addComment(newComment);
-      console.log(response);
     }
 
     const tileClicked = () => {
       if(props.redirectOnClick === 'true' ) {
         window.location.href = `/confession/${props.confession._id}`;
+      }
+    }
+
+    const handleLike = async () => {
+      console.log(like);
+      if(!like) {
+        let response = await ConfessionService.addLike(props.confession._id);
+        props.confession.reactionCount = response.reactionCount;
+        setLike(true);
       }
     }
 
@@ -39,23 +60,32 @@ export default function ConfessionTile(props) {
             {props.confession.content}
         </div>
         <div className="confession-tile__reaction">
-            <div>
-                <span className="confession-tile__like-icon">
+            <div className="confession-tile__reaction-content">
+                {props.showReactButton !== 'false' && (<span className="confession-tile__like-icon" onClick={handleLike}>
+                  <Heart color="#F76F72" weight={like ? 'fill' : 'regular'} size={24} />
+                </span>)}
+                <span>
+                {props.confession.reactionCount} likes
                 </span>
-                {props.confession.reactionCount} reacts
             </div>
             <div>{props.confession.commentCount} comments</div>
         </div>
         {
           props.showCommentBox==='true' && (<div className="confession-tile__comment-section">
-            <form onSubmit={handleSubmit}>
-              <textarea className="confession-tile__new-comment-textarea" name="newcomment" value={inputs.newcomment} onChange={handleChange} />
-              <button type="submit" className="button-styled">Submit Comment</button>
+            <form onSubmit={handleSubmit} className="confession-tile__comment-form">
+              <textarea rows="5" placeholder="Type your comment here..." className="confession-tile__new-comment-textarea" name="newcomment" value={inputs.newcomment} onChange={handleChange} />
+              {
+                formError===true && (<div className="error-message">Please enter a comment above</div>)
+              }
+              <button type="submit" className="button-styled confession-tile__comment-submit-btn">Add Comment</button>
             </form>
             {
-              props.confession.comments &&
-                props.confession.comments.map(item =>
-                <Comment key={item._id} comment={item}/>
+              comments.length > 0 && (<div className='confession-tile__comment-section-heading'>User Comments:</div>)
+            }
+            {
+              comments &&
+                comments.map((item, index) =>
+                <Comment key={item._id} comment={item} commentIndex={index}/>
               )
             }
           </div>)

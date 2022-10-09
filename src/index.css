@@ -3,9 +3,11 @@ body {
   font-family: "Lucida Console", "Courier New", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
-header {
+header,
+footer {
   height: 100px;
 }
 
@@ -27,9 +29,19 @@ header {
   box-shadow: 0px 0px 20px 10px rgba(108,41,53,0.75);
 }
 
-.confession-list {
+.confession-list,
+.confession-showcase {
   display: flex;
   flex-wrap: wrap;
+  margin: 55px 0;
+}
+
+.confession-list .confession-tile__content,
+.confession-showcase .confession-tile__content {
+  max-height: 200px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg,#000 70%,transparent);
+  mask-image: linear-gradient(180deg,#000 70%,transparent);
 }
 
 .confession-list .grid-item {
@@ -37,7 +49,13 @@ header {
   margin: 20px 0;
 }
 
-.confession-list .confession-tile {
+.confession-showcase .grid-item {
+  width: 33.33%;
+  margin: 20px 0;
+}
+
+.confession-list .confession-tile,
+.confession-showcase .confession-tile{
   cursor: pointer;
 }
 
@@ -48,9 +66,28 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-  .confession-list .grid-item {
+  .confession-list .grid-item,
+  .confession-showcase .grid-item {
     width: 100%;
   }
+  .confession-page .confession-tile {
+    width: 80%;
+  }
+}
+.confession-tile__content,
+.confession-tile__comment-content {
+  text-align: left;
+}
+.confession-tile__comment-content {
+  font-size: 14px;
+}
+.confession-tile__like-icon {
+  cursor: pointer;
+  margin-right: 5px;
+}
+.confession-tile__reaction-content {
+  display: flex;
+  align-items: center;
 }
 .confession-tile {
     padding: 30px;
@@ -74,21 +111,31 @@ header {
     -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
+.confession-tile__comment {
+  margin: 0 0 15px 0;
+}
 .confession-tile__comment ,.confession-tile__content {
   background-color: #ffedf1 !important;
   border-radius: 10px;
-  margin: 0 0 5px 0;
   padding: 10px;
-}
-.confession-tile__like-icon{
-    color: red;
-    font-size: 16px;
 }
 .confession-tile__age-gender, .confession-tile__reaction{
     font-size: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 10px;
+}
+.confession-tile__comment-form {
+  text-align: left;
+}
+.confession-tile__comment-submit-btn {
+  margin: 20px 0;
+}
+.confession-tile__comment-section-heading {
+  text-align: left;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 .confession-tile__comment-details {
     font-size: 12px;
@@ -149,8 +196,29 @@ header {
   margin-bottom: 30px;
 }
 
-.home-page__introduction-text {
-  font-size: 36px;
-  width: 50%;
+.introduction-text {
+  font-size: 20px;
+  width: 95%;
   margin: 0 auto;
+}
+
+.submit-confession-form {
+  width: 90%;
+  margin: 0 auto;
+}
+.submit-confession-form .form-element {
+  margin-bottom: 25px;
+}
+.submit-confession-form .form-element input,
+.submit-confession-form .form-element select {
+  width: 100px;
+  height: 30px;
+}
+.submit-confession-form .form-element label {
+  display: block;
+  margin-bottom: 10px;
+}
+.error-message {
+  color: red;
+  padding: 10px 0;
 }
