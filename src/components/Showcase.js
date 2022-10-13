@@ -11,9 +11,9 @@ export default function Showcase() {
             const response = await ConfessionService.fetchSingleConfession(id);
             setConfessions(confessions => [...confessions, response]);
         }
-        fetchSingleData('634350c677661676e1d7990b');
-        fetchSingleData('634350ef77661676e1d7990d');
-        fetchSingleData('6343510177661676e1d7990f');
+        fetchSingleData('63444addcabb3ea72735e517');
+        fetchSingleData('63444bd0cabb3ea72735e521');
+        fetchSingleData('6344650ccabb3ea72735e538');
     }, []);
   
       return (
