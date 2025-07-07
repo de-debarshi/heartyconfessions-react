@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# ⚠️ Project Migrated: Hearty Confessions is now on Next.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository is no longer maintained. The project has been migrated to a new full-stack Next.js application:
 
-## Available Scripts
+- **New GitHub Repo:** [heartyconfessions-next](https://github.com/de-debarshi/heartyconfessions-next)
+- **Live Demo:** [heartyconfessions-next-git-master-dedebarshis-projects.vercel.app](https://heartyconfessions-next-git-master-dedebarshis-projects.vercel.app/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+# Hearty Confessions (React Version)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Hearty Confessions is a web application where users can **share and explore anonymous stories**. This project was built for learning purposes using React and demonstrates basic CRUD operations, API integration, and user interaction patterns.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Submit Confessions:** Users can anonymously submit their stories by providing age, gender, and confession content.
+- **Explore Stories:** Browse a feed of confessions with infinite scroll.
+- **View Individual Confessions:** Click on any confession to view its details and comments.
+- **Like & Comment:** Users can like confessions and add comments as guests.
+- **Showcase:** Highlights selected confessions on the home page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technical Overview
 
-### `npm run build`
+- **Frontend:** React (Create React App), functional components, hooks
+- **API Integration:** Uses Axios to interact with a REST API (hosted at heartyconfessions.com)
+- **UI:** Simple, responsive layout with custom CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Learning Purpose
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This project was created to practice:
+- Building React apps with functional components and hooks
+- Integrating with REST APIs
+- Managing forms and user input
+- Implementing infinite scroll and basic state management
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For the latest version with improved features and a full-stack architecture, please visit the [Next.js repository](https://github.com/de-debarshi/heartyconfessions-next).
 
-### `npm run eject`
+## Author
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Debarshi**
